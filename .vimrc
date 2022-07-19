@@ -31,7 +31,8 @@ autocmd BufNewFile *.cpp 0r /home/aarish/.config/template.cpp
 autocmd filetype cpp nnoremap <F9> :w <bar> !build.sh %:r <CR> 
 autocmd filetype cpp nnoremap <F10> :vertical terminal ++shell ++cols=40 build.sh %:r  &&  ./%:r<CR>
 map <F3> :30vsp input.txt<CR>
-map <F4> :split output.txt<CR>
+map <F4> ggVG"_dd<CR>
+
 
 "LaTeX settings
 autocmd FileType tex :NoMatchParen
