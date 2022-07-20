@@ -4,6 +4,7 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
+set selection=exclusive
 set ruler
 set showcmd
 set incsearch
