@@ -19,7 +19,9 @@ setlocal indentkeys-=:
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap {}     {}
 autocmd BufNewFile *.cpp 0r /home/aarish/.config/template.cpp
-autocmd filetype cpp nnoremap <F10> :vertical terminal ++shell ++cols=30 g++ %:r.cpp -o %:r  &&  ./%:r <CR>
+nnoremap <C-b> :vertical terminal ++shell ++cols=30 g++ %:r.cpp -o %:r  &&  ./%:r <CR>
+nnoremap <C-c> "+y
+nnoremap <C-v> "+p
 autocmd VimLeave *.cpp !rm in rm %:r
 map <F3> :30vsp in<CR>
 map <F4> ggVG"_dd<CR>
