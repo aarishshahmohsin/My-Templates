@@ -1,0 +1,9 @@
+{
+    "editor.mouseWheelZoom": true,
+    "code-runner.saveAllFilesBeforeRun": true,
+    "terminal.integrated.defaultLocation": "editor",
+    "code-runner.runInTerminal": true,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.preserveFocus": false,
+    "window.zoomLevel": -1
+}
