@@ -10,8 +10,11 @@ end
 -- stylua: ignore start
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'                                                    -- Package manager
+  use 'kyazdani42/nvim-web-devicons'                                                -- icons
   use 'windwp/nvim-autopairs'                                                     -- Auto Brackets
-  use 'EdenEast/nightfox.nvim'                                                    -- nightfox theme
+  use 'cocopon/iceberg.vim'                                                    -- iceberg theme
+  use 'NLKNguyen/papercolor-theme'
+    -- papercolor theme
   use 'tpope/vim-fugitive'                                                        -- Git commands in nvim
   use 'tpope/vim-rhubarb'                                                         -- Fugitive-companion to interact with github
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
@@ -60,10 +63,15 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- See `:help vim.o`
 
 -- My Configurations for CP
+vim.cmd [[set splitbelow]]
 vim.cmd [[map <F3> :30vsp in<CR>]]
 vim.cmd [[map <F4> ggVG"_dd<CR>]]
-vim.cmd [[autocmd BufNewFile *.cpp 0r /home/aarish/.config/template.cpp]]
+vim.cmd [[autocmd BufNewFile *.cpp 0r /home/aarish/.config/template1.cpp]]
 vim.cmd [[map <C-b> :!g++ % -o %:r && ./%:r < in<CR>]]
+
+-- setting the background to be transparent
+vim.cmd [[highlight Normal ctermbg=none]]
+vim.cmd [[highlight NonText ctermbg=none]]
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -90,7 +98,8 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme carbonfox]]
+vim.cmd [[colorscheme PaperColor]]
+vim.cmd [[set background=light]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -382,9 +391,15 @@ cmp.setup {
     { name = 'luasnip' },
   },
   vim.diagnostic.config({
-    update_in_insert = true;
+    update_in_insert = true,
+    virtual_text = false,
+    underline = true,
+    signs = true;
   })
 }
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
