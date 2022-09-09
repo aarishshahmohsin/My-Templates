@@ -10,6 +10,7 @@ end
 -- stylua: ignore start
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'                                                    -- Package manager
+  use 'wojciechkepka/vim-github-dark'
   use 'kyazdani42/nvim-web-devicons'                                                -- icons
   use 'windwp/nvim-autopairs'                                                     -- Auto Brackets
   use 'cocopon/iceberg.vim'                                                    -- iceberg theme
@@ -98,8 +99,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme PaperColor]]
-vim.cmd [[set background=light]]
+vim.cmd [[colorscheme iceberg]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -392,14 +392,15 @@ cmp.setup {
   },
   vim.diagnostic.config({
     update_in_insert = true,
-    virtual_text = false,
+    virtual_text  = false,
     underline = true,
     signs = true;
   })
 }
-vim.o.updatetime = 250
-vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
-vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
+vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.diagnostic.open_float({focusable = false})
+vim.cmd [[map <C-c> "+y"]]
+vim.cmd [[map <C-y> "+p"]]
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
