@@ -408,5 +408,18 @@ set ts=4
 set sw=4
 ]]
 
+vim.cmd [[
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd TermOpen * setlocal nonumber norelativenumber
+map <C-b> :vsp term:// g++ % && ./a.out<CR>
+]]
+  
+vim.cmd [[
+highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+set cursorline
+]]
+
+
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
